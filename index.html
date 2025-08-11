@@ -1,237 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>استديو مجد الدين للتصميم المعماري</title>
+  <title>استديو مجد الدين — تصميم معماري</title>
+  <meta name="description" content="استديو مجد الدين — تصميم معماري داخلي وخارجي، مشاريع تنفيذية وإشراف هندسي." />
   <style>
     :root{
-      --bg:#111213;
-      --surface:#1f1f20;
-      --muted:#9d9d9d;
-      --accent:#d07c52; /* Terracotta from your logo */
-      --accent-2:#bda9a0; /* Taupe from your logo */
-      --radius:12px;
+      --bg:#0b0c0d;
+      --panel:#0f1112;
+      --muted:#c6bfb9;
+      --accent:#c97557;
+      --accent-2:#bda7a1;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color: #f4f4f4}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:linear-gradient(180deg, rgba(0,0,0,0.25), transparent)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, Arial; background:linear-gradient(180deg,var(--bg),#060606); color:#fff;}
+    header{position:fixed;inset:0 0 auto 0;height:82px;display:flex;align-items:center;justify-content:space-between;padding:12px 6%;z-index:60;background:linear-gradient(180deg, rgba(11,12,13,0.55), rgba(11,12,13,0.25));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
     .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:64px;width:auto;display:block}
-    .brand h1{font-size:20px;margin:0;color:var(--accent);letter-spacing:1px}
-
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-size:1rem;padding:8px;border-radius:8px}
-    nav a:hover{color:var(--accent);background:rgba(208,124,82,0.06)}
-
-    .controls{display:flex;align-items:center;gap:12px}
-    .btn{
-      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;font-weight:600
-    }
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#111}
-
-    /* Hero */
-    .hero{
-      min-height:62vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px 18px;position:relative;
-      background-color:#0f1112; /* fallback */
-      background-image:radial-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.6));
-    }
-    .hero .content{max-width:1100px}
-    .hero h2{font-size:2.6rem;margin:0 0 12px;color:var(--accent)}
-    .hero p{color:var(--muted);font-size:1.05rem;margin:0}
-
-    /* Grid sections */
-    .section{padding:56px 6%;}
-    .grid{display:grid;gap:20px}
-    .services-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
-    .card h3{margin:0 0 8px;color:var(--accent)}
-    .card p{margin:0;color:var(--muted)}
-
-    /* Footer */
-    footer{padding:28px 6%;background:transparent;color:var(--muted);text-align:center}
-
-    /* Small responsive tweaks */
-    @media (max-width:720px){
-      .hero h2{font-size:1.8rem}
-      nav{display:none}
-    }
-
-    /* Status / Toast */
-    #status{position:fixed;left:16px;bottom:16px;background:rgba(0,0,0,0.6);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+    .brand img{height:60px;width:auto;display:block}
+    .brand .title{line-height:1}
+    .brand .title strong{display:block;font-size:1rem;color:#fff}
+    .brand .title small{display:block;color:var(--muted);font-size:0.8rem}
+    nav{display:flex;align-items:center;gap:18px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px}
+    nav a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
+    .hero{min-height:88vh;display:grid;grid-template-columns:1fr 520px;align-items:center;padding:120px 6% 60px;gap:40px}
+    .eyebrow{color:var(--accent-2);font-weight:700;margin-bottom:10px}
+    .hero h1{font-size:clamp(28px,5.4vw,56px);line-height:1.02;margin-bottom:14px;color:#fff}
+    .lead{color:var(--muted);max-width:640px;font-size:1.05rem;margin-bottom:18px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 18px;border-radius:10px;font-weight:800;border:0;cursor:pointer}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#b86b50);color:#fff;box-shadow:0 8px 30px rgba(201,117,87,0.08)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;align-items:center;gap:20px;border:1px solid rgba(255,255,255,0.03);box-shadow: 0 18px 60px rgba(2,2,2,0.6)}
+    .hero-card img{max-width:78%;height:auto;display:block;filter:drop-shadow(0 6px 20px rgba(0,0,0,0.6))}
+    section{padding:60px 6%}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .card{background:var(--panel);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{color:var(--accent);margin-bottom:8px}
+    .muted{color:var(--muted)}
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .proj{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+    .proj img{width:100%;height:260px;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.3,1)}
+    .proj:hover img{transform:scale(1.06)}
+    .proj .meta{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));padding:10px 12px;border-radius:8px}
+    .proj .meta h4{margin:0;font-size:1rem;color:#fff}
+    .proj .meta p{margin:4px 0 0;color:var(--muted);font-size:0.9rem}
+    footer{padding:36px 6%;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
+    .socials{display:flex;gap:10px;align-items:center}
+    .socials a{color:var(--muted);text-decoration:none;border-radius:8px;padding:6px 8px;border:1px solid rgba(255,255,255,0.02)}
+    @media (max-width:1000px){.hero{grid-template-columns:1fr 360px;padding-top:110px}.projects{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){header{padding:10px 4%}.hero{grid-template-columns:1fr;padding:100px 4% 40px;gap:18px}.hero-card{order:-1}.projects{grid-template-columns:1fr}.hero-card img{max-width:72%}}
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
-      <!-- use the provided images (the environment may map them automatically). We provide two fallbacks. -->
-      <picture>
-        <source srcset="MAJD-LOGO-3.png" />
-        <img src="LOGO.png" alt="شعار مجد الدين" />
-      </picture>
-      <h1>استديو مجد الدين</h1>
+      <img src="LOGO.png" alt="شعار مجد الدين" />
+      <div class="title">
+        <strong>MAJDDEEN</strong>
+        <small>استديو مجد الدين للتصميم المعماري</small>
+      </div>
     </div>
 
-    <nav aria-label="قائمة التنقل">
-      <a href="#">الرئيسية</a>
+    <nav aria-label="قائمة الموقع">
+      <a href="#home">الرئيسية</a>
+      <a href="#about">من نحن</a>
       <a href="#services">الخدمات</a>
       <a href="#projects">المشاريع</a>
       <a href="#contact">تواصل</a>
     </nav>
-
-    <div class="controls">
-      <!-- Note: this button does NOT auto-connect. It performs a user-initiated check/request only. -->
-      <button id="connectWalletBtn" class="btn">اتصال بالمحفظة</button>
-      <button class="btn primary" onclick="location.href='#contact'">اطلب عرضًا</button>
-    </div>
   </header>
 
-  <main>
-    <section class="hero" role="banner" aria-labelledby="hero-heading">
-      <div class="content">
-        <h2 id="hero-heading">تصميم معماري بمعايير حداثية — هوية واحترافية</h2>
-        <p>نحو مساحات تُحاكي متطلبات الحياة المعاصرة وتُبرز الحس المعماري بخطوط واضحة ومواد مُنتقاة.</p>
-      </div>
-    </section>
-
-    <section id="services" class="section" aria-labelledby="services-heading">
-      <h2 id="services-heading" style="color:var(--accent)">خدماتنا</h2>
-      <div class="grid services-grid">
-        <article class="card">
-          <h3>التصميم المعماري</h3>
-          <p>مخططات تنفيذية، نماذج ثلاثية الأبعاد، وخبرة في تصميم الفلل، الأبنية السكنية والتجارية.</p>
-        </article>
-        <article class="card">
-          <h3>التصميم الداخلي</h3>
-          <p>حلول ذكية للمساحات الداخلية توازن بين الجمال والوظيفة.</p>
-        </article>
-        <article class="card">
-          <h3>إدارة المشاريع والإشراف</h3>
-          <p>متابعة تنفيذية دقيقة وضمان جودة في كل مرحلة.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="projects" class="section" aria-labelledby="projects-heading">
-      <h2 id="projects-heading" style="color:var(--accent)">نماذج مشاريع مختارة</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
-        <div class="card" style="min-height:160px;display:flex;align-items:end;justify-content:flex-end;background-image:linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.45));">
-          <div>
-            <h3>مجمع سكني حديث</h3>
-            <p style="color:var(--muted)">تصميم يعيد تعريف الاستخدام الذكي للمساحات.</p>
-          </div>
+  <main id="home">
+    <section class="hero" id="hero">
+      <div>
+        <div class="eyebrow">تصميم معماري وفن المسكن</div>
+        <h1>نحو مساحات ذكية، أنيقة، وصالحة للحياة</h1>
+        <p class="lead">نحن نصمم مساحات تـنسجم مع احتياجاتك — من التصور الأولي وحتى تسليم المفتاح. خبرتنا تجمع بين الجمال، الوظيفة، والاهتمام بالتفاصيل.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">تصفح المشاريع</a>
+          <a class="btn btn-ghost" href="#contact">اطلب استشارة</a>
         </div>
-        <div class="card" style="min-height:160px;display:flex;align-items:end;justify-content:flex-end;">
-          <div>
-            <h3>فيلا ريفية</h3>
-            <p style="color:var(--muted)">اندماج المواد الطبيعية مع لمسات تصميمية معاصرة.</p>
+
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="card" style="max-width:320px">
+            <h3>رؤيتنا</h3>
+            <p class="muted">تصميم يحقق التوازن بين الجمال والوظيفة، مع احترام السياق المحلي والبيئة.</p>
+          </div>
+          <div class="card" style="max-width:320px">
+            <h3>الخبرة</h3>
+            <p class="muted">سنوات من العمل في مشاريع سكنية وتجارية، مع فريق متعدد التخصصات.</p>
           </div>
         </div>
       </div>
+
+      <aside class="hero-card" aria-hidden="true">
+        <img src="LOGO.png" alt="شعار مجد الدين" />
+        <div style="text-align:center;color:var(--muted)"><strong style="color:#fff">استديو مجد الدين</strong><div class="muted">تصميم معماري داخلي وخارجي</div></div>
+      </aside>
     </section>
 
-    <section id="contact" class="section" aria-labelledby="contact-heading">
-      <h2 id="contact-heading" style="color:var(--accent)">تواصل معنا</h2>
-      <div class="grid" style="grid-template-columns:1fr 320px;gap:22px;align-items:start">
-        <form class="card" onsubmit="event.preventDefault(); alert('تم استلام طلبك — سيتم التواصل قريبًا');">
-          <label style="display:block;margin-bottom:8px;color:var(--muted)">الاسم</label>
-          <input type="text" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px" />
-          <label style="display:block;margin-bottom:8px;color:var(--muted)">البريد الإلكتروني</label>
-          <input type="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px" />
-          <label style="display:block;margin-bottom:8px;color:var(--muted)">موجز الطلب</label>
-          <textarea required rows="5" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px"></textarea>
-          <button type="submit" class="btn primary">إرسال</button>
-        </form>
+    <section id="about">
+      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center">
+        <div>
+          <h2 style="font-size:1.6rem;margin-bottom:12px;color:#fff">من نحن</h2>
+          <p class="muted">استوديو مجد الدين متخصص في التصميم المعماري وتصميم المساحات الداخلية. نقدم حلولاً مبتكرة تعتمد على تحليل الموقع واحتياجات المستخدم، مع الالتزام بالجودة ومواعيد التسليم.</p>
+          <p class="muted" style="margin-top:12px">نعمل عن قرب مع العملاء لتشكيل رؤية واضحة قبل مرحلة التنفيذ، ونرافق المشروع لمرحلة الانتهاء لضمان نتائج تتوافق مع التصميم.</p>
+        </div>
+        <div class="card">
+          <h3>قيمنا</h3>
+          <p class="muted">ابتكار — دقة — استدامة — تواصل</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 style="font-size:1.6rem;margin-bottom:12px;color:#fff">خدماتنا</h2>
+      <div class="grid">
+        <div class="card"><h3>تخطيط وتصميم معماري</h3><p class="muted">مخططات تنفيذية، تصاميم واجهات، ودراسات احتياجات.</p></div>
+        <div class="card"><h3>تصميم داخلي وتنفيذ</h3><p class="muted">اختيار مواد، أثاث وإضاءة، وإدارة تكنولوجيات المساحات.</p></div>
+        <div class="card"><h3>إشراف تنفيذي وإدارة مشروع</h3><p class="muted">متابعة الجودة والجدول الزمني والميزانية أثناء التنفيذ.</p></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 style="font-size:1.6rem;margin-bottom:12px;color:#fff">مشاريع مختارة</h2>
+      <div class="projects">
+        <div class="proj">
+          <img src="https://images.unsplash.com/photo-1505691723518-34d8d1a35d61?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1c7f4b6f9fda3b6b5ea3c6b1f6f3c9f0" alt="مشروع 1">
+          <div class="meta"><h4>فيلا الحدائق</h4><p class="muted">تصميم سكني حديث</p></div>
+        </div>
+        <div class="proj">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f4f6a8f3d2b8f3a6b3c4d2e1a1b2c3d" alt="مشروع 2">
+          <div class="meta"><h4>مجمع تجاري</h4><p class="muted">واجهات ومساحات مرنة</p></div>
+        </div>
+        <div class="proj">
+          <img src="https://images.unsplash.com/photo-1523206489230-fedf3f72a6a7?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d" alt="مشروع 3">
+          <div class="meta"><h4>شقة نموذجية</h4><p class="muted">تصميم داخلي راقي</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 style="font-size:1.6rem;margin-bottom:12px;color:#fff">تواصل معنا</h2>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px">
+        <div class="card">
+          <form onsubmit="event.preventDefault(); alert('تم إرسال طلبك! سنرد عليك قريبًا.');">
+            <label style="display:block;color:var(--muted);margin-bottom:8px">الاسم</label>
+            <input required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:12px">
+            <label style="display:block;color:var(--muted);margin-bottom:8px">الهاتف أو البريد</label>
+            <input required style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:12px">
+            <label style="display:block;color:var(--muted);margin-bottom:8px">وصف مختصر للمشروع</label>
+            <textarea required rows="5" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:12px"></textarea>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-primary" type="submit">أرسل</button>
+              <button class="btn btn-ghost" type="reset">مسح</button>
+            </div>
+          </form>
+        </div>
 
         <aside class="card">
-          <h3>بيانات الاتصال</h3>
-          <p style="color:var(--muted)">البريد: info@majddeen.studio<br/>الهاتف: +966 5X XXX XXXX<br/>الموقع: الرياض، المملكة العربية السعودية</p>
-          <div style="margin-top:12px"><strong style="color:var(--accent)">ملاحظة تقنية:</strong>
-            <p style="color:var(--muted);margin:8px 0 0;font-size:13px">إذا كنت ترى رسالة "Failed to connect to MetaMask" عند تشغيل هذا الملف، فهذا يعني أنّ المحاولات للاتصال بامتداد MetaMask تمت تلقائيًا من مكان آخر أو من سكربت آخر في بيئتك. هذا القالب لا يحاول الاتصال تلقائيًا؛ يجب الضغط على زر "اتصال بالمحفظة" لبدء العملية بشكل تفاعلي وآمن.</p>
+          <h3>معلومات التواصل</h3>
+          <p class="muted">البريد: info@majddeen.com<br>الهاتف: +966 5X XXX XXXX</p>
+          <div style="height:12px"></div>
+          <p class="muted">العنوان: جدة، المملكة العربية السعودية</p>
+          <div style="height:18px"></div>
+          <div class="socials">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Behance">Behance</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
           </div>
         </aside>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <p>© 2025 استديو مجد الدين للتصميم المعماري — كل الحقوق محفوظة</p>
+    <div>© <span id="year"></span> استديو مجد الدين — جميع الحقوق محفوظة</div>
+    <div class="muted">تصميم أولي — عرض توضيحي</div>
   </footer>
 
-  <div id="status" aria-live="polite">جاهز</div>
-
   <script>
-    // --- IMPORTANT ---
-    // This script deliberately DOES NOT auto-connect to MetaMask or any wallet on load.
-    // Many "Failed to connect to MetaMask" errors are caused by auto-connection attempts
-    // in sandboxed or restricted environments. We only attempt to connect when the user
-    // clicks the "connectWalletBtn" button.
-
-    const statusEl = document.getElementById('status');
-    const connectBtn = document.getElementById('connectWalletBtn');
-
-    function setStatus(msg){
-      statusEl.textContent = msg;
-      console.debug('[STATUS]', msg);
-    }
-
-    function isMetaMaskAvailable(){
-      try{
-        return typeof window !== 'undefined' && !!window.ethereum && !!window.ethereum.isMetaMask;
-      }catch(e){
-        return false;
-      }
-    }
-
-    // On load we only detect presence; we DO NOT request accounts.
-    window.addEventListener('load', ()=>{
-      if(isMetaMaskAvailable()){
-        setStatus('MetaMask متوفر — انقر "اتصال بالمحفظة" لتسجيل الدخول');
-      } else {
-        setStatus('MetaMask غير مثبت أو غير متاح في هذا المتصفح');
-      }
-    });
-
-    // User-initiated connect (safe): wrapped in try/catch and never called automatically.
-    async function connectWallet(){
-      if(!isMetaMaskAvailable()){
-        alert('MetaMask غير مثبت أو غير متاح. الرجاء تثبيته أو استخدام متصفح يدعمه.');
-        return;
-      }
-
-      setStatus('طلب الإتصال بالمحفظة — يرجى الموافقة في نافذة MetaMask');
-      try{
-        // Request accounts from MetaMask. This MUST be done from user interaction (button click).
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        if(Array.isArray(accounts) && accounts.length>0){
-          setStatus('متصل بالمحفظة: ' + accounts[0]);
-          connectBtn.textContent = 'تم الاتصال';
-          connectBtn.disabled = true;
-        } else {
-          setStatus('لم يتم إرجاع حسابات من MetaMask');
-        }
-      }catch(err){
-        // Handle and display the error gracefully. Many environments will throw here
-        // if MetaMask is not reachable from the sandbox.
-        console.error('خطأ عند محاولة الاتصال بمحفظة MetaMask:', err);
-        setStatus('فشل الاتصال بالمحفظة — تحقق من ملحق MetaMask أو سجلات الكونسول');
-        // Provide a readable message for known common cases
-        if(err && err.code === 4001){
-          // EIP-1193 userRejectedRequest
-          alert('لقد رفضت طلب الاتصال من MetaMask. حاول مرة أخرى إن رغبت.');
-        } else {
-          // Generic fallback
-          alert('تعذر الاتصال بالمحفظة. راجع الكونسول لمزيد من التفاصيل.');
-        }
-      }
-    }
-
-    connectBtn.addEventListener('click', connectWallet);
-
-    // For debugging in sandboxed environments: expose helper on window
-    window.__majdDebug = { isMetaMaskAvailable };
+    try { document.getElementById('year').textContent = new Date().getFullYear(); } catch(e){}
+    (function(){ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){ e.preventDefault(); const id = this.getAttribute('href'); if(id==='#') return; const el = document.querySelector(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); })); })();
   </script>
 </body>
 </html>
