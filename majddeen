@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111111" />
+  <title>استديو مجد الدين — نموذج أولي (نسخة آمنة + اختبار)</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <style>
+    :root{
+      --bg:#0f1112;
+      --card:#1f2223;
+      --muted:#bcb6b3;
+      --accent:#c97557;
+      --accent-2:#bda7a1;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #0b0b0b);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 40px;position:sticky;top:0;z-index:40;backdrop-filter: blur(6px);background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.2));border-bottom:1px solid rgba(255,255,255,0.03);}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{height:64px;width:auto;display:block}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--accent)}
+    .hero{min-height:66vh;display:flex;align-items:center;padding:48px 6%;gap:40px}
+    .hero-left{flex:1;max-width:760px}
+    .eyebrow{color:var(--accent-2);font-weight:700}
+    .hero h1{font-size:clamp(28px,5vw,52px);margin:14px 0 10px;color:#fff}
+    .lead{color:var(--muted);font-size:1.05rem;margin-bottom:18px}
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#b86b50);color:#fff}
+    .btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
+    .hero-right{flex:1;display:flex;justify-content:center}
+    .logo-card{width:320px;height:320px;border-radius:20px;background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;box-shadow: 0 8px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+    .logo-card img{max-width:85%;height:auto;display:block}
+    .section{padding:54px 6%}
+    .section h2{font-size:1.45rem;margin:0 0 18px;color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:8px 0;color:var(--accent)}
+    .muted{color:var(--muted)}
+    footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,0.03);color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    @media (max-width:900px){header{padding:12px 18px}.hero{padding:36px 6%}.logo-card{width:240px;height:240px}.brand img{height:56px}}
+
+    /* debug overlay */
+    .debug-banner{position:fixed;left:12px;right:12px;bottom:12px;background:rgba(0,0,0,0.8);color:#fff;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);z-index:9999;font-size:0.95rem;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .debug-banner button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 10px;border-radius:6px;color:var(--muted);cursor:pointer}
+    .test-result{font-weight:700;color:var(--accent);margin-left:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <picture>
+        <source srcset="MAJD-LOGO-3.png" media="(min-width:600px)">
+        <img src="LOGO.png" alt="شعار مجد الدين" style="height:56px;"/>
+      </picture>
+      <div style="display:flex;flex-direction:column;line-height:1">
+        <strong style="font-size:0.95rem">MAJDDEEN</strong>
+        <small class="muted">استديو مجد الدين للتصميم المعماري</small>
+      </div>
+    </div>
+
+    <nav aria-label="قائمة الموقع">
+      <a href="#home">الرئيسية</a>
+      <a href="#projects">مشاريعنا</a>
+      <a href="#services">خدمات</a>
+      <a href="#team">الفريق</a>
+      <a href="#contact">تواصل</a>
+      <!-- Optional test button; does NOT auto-connect. Click to run the safe test that verifies wrapper is active. -->
+      <button id="test-wallet" class="btn btn-ghost" style="margin-left:10px">اختبار MetaMask (اختياري)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <div class="eyebrow">استوديو معماري — تصميم وابتكار</div>
+        <h1>نحن نصمم مساحات تحكي قصة كل عميل</h1>
+        <p class="lead">تصاميم معمارية داخلية وخارجية متكاملة، حلول تنفيذية، وإشراف هندسي — نقدم رؤية واضحة للمكان قبل أن يُبنى.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">مشاهدة المشاريع</a>
+          <a class="btn btn-ghost" href="#contact">طلب استشارة</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="logo-card" aria-hidden="true">
+          <img src="MAJD-LOGO-3.png" alt="شعار مجد الدين"/>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>أبرز المشاريع</h2>
+      <div class="grid">
+        <article class="card">
+          <img data-src="https://via.placeholder.com/800x500?text=Project+1" alt="مشروع 1" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
+          <h3>فيلا سكنية</h3>
+          <p class="muted">تصميم عصري يوازن بين الخصوصية والمساحات المفتوحة.</p>
+        </article>
+
+        <article class="card">
+          <img data-src="https://via.placeholder.com/800x500?text=Project+2" alt="مشروع 2" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
+          <h3>مبنى تجاري</h3>
+          <p class="muted">مخططات مرنة ومساحات واجهات مميزة.</p>
+        </article>
+
+        <article class="card">
+          <img data-src="https://via.placeholder.com/800x500?text=Project+3" alt="مشروع 3" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
+          <h3>تصميم داخلي</h3>
+          <p class="muted">حلول عملية مع لمسات جمالية دقيقة.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <h2>خدماتنا</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>تصميم معماري</h3>
+          <p class="muted">مخططات وتصاميم تنفيذية تراعي الميزانية والجدول الزمني.</p>
+        </div>
+        <div class="card">
+          <h3>تصميم داخلي</h3>
+          <p class="muted">اختيارات مواد وأثاث وحلول إضاءة متكاملة.</p>
+        </div>
+        <div class="card">
+          <h3>إشراف تنفيذي</h3>
+          <p class="muted">متابعة مراحل التنفيذ للتأكد من مطابقة التصاميم للمخرجات.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="section">
+      <h2>فريق العمل</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>مجد الدين</h3>
+          <p class="muted">مؤسس واستشاري معماري — شغف بتصميم المساحات السكنية والمعمارية.</p>
+        </div>
+        <div class="card">
+          <h3>مصمم داخلي</h3>
+          <p class="muted">خبرة في تحويل الأفكار إلى واقع ملموس.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>تواصل معنا</h2>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px">
+        <div class="card">
+          <form action="mailto:info@example.com" method="post" enctype="text/plain">
+            <label style="display:block;margin-bottom:8px;color:var(--muted)">الاسم</label>
+            <input name="name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:10px">
+
+            <label style="display:block;margin-bottom:8px;color:var(--muted)">البريد الإلكتروني</label>
+            <input type="email" name="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:10px">
+
+            <label style="display:block;margin-bottom:8px;color:var(--muted)">رسالة / وصف المشروع</label>
+            <textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:12px"></textarea>
+
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-primary" type="submit">أرسل</button>
+              <button class="btn btn-ghost" type="reset">مسح</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="card">
+          <h3>معلومات التواصل</h3>
+          <p class="muted">البريد: info@example.com<br>الهاتف: +966 5X XXX XXXX</p>
+          <div style="height:12px"></div>
+          <p class="muted">العنوان: الرياض، المملكة العربية السعودية</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> استديو مجد الدين — جميع الحقوق محفوظة</div>
+    <div class="muted">تصميم أولي — قابل للتطوير والربط بـ CMS</div>
+  </footer>
+
+  <script>
+    // dynamic year
+    try { document.getElementById('year').textContent = new Date().getFullYear(); } catch(e){ console.warn('Year element missing', e); }
+
+    // lazy load images
+    (function(){
+      const lazy = Array.from(document.querySelectorAll('img.lazy'));
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              const img = e.target;
+              if(img.dataset && img.dataset.src){
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                img.classList.remove('lazy');
+              }
+              io.unobserve(img);
+            }
+          })
+        },{rootMargin:'200px'});
+        lazy.forEach(img=>io.observe(img));
+      } else {
+        lazy.forEach(img=>{ if(img.dataset && img.dataset.src) img.src = img.dataset.src});
+      }
+    })();
+
+    // Defensive wrapper for ethereum provider: do NOT auto-connect.
+    (function(){
+      if (typeof window === 'undefined') return;
+      try {
+        if (window.ethereum) {
+          window.__MAJDDEEN_metaMask_detected = true;
+          console.info('MetaMask/ethereum provider detected. Preview wrapper is active.');
+          try {
+            const canWrap = !!window.ethereum.request && (function() {
+              try {
+                const desc = Object.getOwnPropertyDescriptor(window.ethereum, 'request');
+                return !desc || desc.writable !== false;
+              } catch (e) { return false; }
+            })();
+
+            if (canWrap) {
+              const originalRequest = window.ethereum.request.bind(window.ethereum);
+              window.ethereum.request = async function(args) {
+                console.warn('Blocked ethereum.request call in preview environment. args:', args);
+                return Promise.reject(new Error('MetaMask requests are disabled in this preview environment. Click "اختبار MetaMask" to run a controlled test.'));
+              };
+              window.__MAJDDEEN_metaMask_wrapped = true;
+            } else {
+              console.warn('ethereum.request is not writable; wrapper not applied.');
+            }
+          } catch (wrapErr) {
+            console.warn('Could not wrap ethereum.request safely:', wrapErr);
+          }
+        }
+      } catch (err) {
+        console.warn('Error while checking ethereum provider:', err);
+      }
+    })();
+
+    // Debug banner
+    (function(){
+      function showDebugBanner(msg, isPersistent){
+        try {
+          let banner = document.getElementById('__majddeen_debug_banner');
+          if (!banner) {
+            banner = document.createElement('div');
+            banner.id = '__majddeen_debug_banner';
+            banner.className = 'debug-banner';
+            banner.innerHTML = '<div id="__majddeen_debug_text"></div><div><button id="__majddeen_debug_close">إغلاق</button></div>';
+            document.body.appendChild(banner);
+            document.getElementById('__majddeen_debug_close').addEventListener('click', ()=>{ banner.style.display='none'; });
+          }
+          document.getElementById('__majddeen_debug_text').textContent = msg;
+          banner.style.display = 'flex';
+          if(!isPersistent){
+            setTimeout(()=>{ banner.style.display = 'none'; }, 8000);
+          }
+        } catch(e){ console.warn('Could not show debug banner', e); }
+      }
+
+      window.addEventListener('error', function(ev){
+        const msg = ev && ev.message ? ev.message : String(ev);
+        if (msg && (msg.toLowerCase().includes('metamask') || msg.toLowerCase().includes('ethereum') || msg.toLowerCase().includes('failed to connect'))) {
+          console.warn('Caught error related to MetaMask/ethereum:', msg, ev);
+          showDebugBanner('تحذير: تم رصد خطأ متعلق بـ MetaMask/ethereum. هذا المعاين يمنع الاتصالات التلقائية. افتح Console لفحص المصدر.', true);
+        }
+      });
+
+      window.addEventListener('unhandledrejection', function(ev) {
+        const reason = ev && ev.reason ? (ev.reason.message || ev.reason.toString()) : 'Unhandled rejection';
+        if (reason && (reason.toLowerCase().includes('metamask') || reason.toLowerCase().includes('ethereum') || reason.toLowerCase().includes('failed to connect'))) {
+          console.warn('Caught promise rejection related to MetaMask/ethereum:', reason, ev);
+          showDebugBanner('تحذير: تم رصد Promise rejection متعلق بـ MetaMask/ethereum. افتح Console للتفاصيل.', true);
+        }
+      });
+
+      // expose for manual use
+      window.__majddeen_showDebug = showDebugBanner;
+    })();
+
+    // Test button behavior: safe test triggered only on user click
+    (function(){
+      const btn = document.getElementById('test-wallet');
+      if(!btn) return;
+      btn.addEventListener('click', async function(){
+        const show = window.__majddeen_showDebug || function(msg){ alert(msg); };
+        try {
+          if(!window.ethereum){
+            show('لا يوجد مزوّد Ethereum (MetaMask) مثبت في المتصفح.', false);
+            return;
+          }
+          // Attempt a controlled request; our wrapper should reject with a specific message.
+          const result = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch(err => { throw err; });
+          // If it resolves (unlikely in this preview), show accounts
+          show('تم الحصول على حسابات: ' + JSON.stringify(result), false);
+        } catch (err){
+          // Display the controlled rejection message (wrapped)
+          const msg = err && err.message ? err.message : String(err);
+          show('نتيجة اختبار MetaMask: ' + msg, false);
+          console.warn('Test wallet result:', err);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
