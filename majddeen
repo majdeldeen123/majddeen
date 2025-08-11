@@ -1,323 +1,237 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#111111" />
-  <title>استديو مجد الدين — نموذج أولي (نسخة آمنة + اختبار)</title>
-  <meta name="robots" content="noindex,nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>استديو مجد الدين للتصميم المعماري</title>
   <style>
     :root{
-      --bg:#0f1112;
-      --card:#1f2223;
-      --muted:#bcb6b3;
-      --accent:#c97557;
-      --accent-2:#bda7a1;
-      --glass: rgba(255,255,255,0.03);
+      --bg:#111213;
+      --surface:#1f1f20;
+      --muted:#9d9d9d;
+      --accent:#d07c52; /* Terracotta from your logo */
+      --accent-2:#bda9a0; /* Taupe from your logo */
+      --radius:12px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,var(--bg), #0b0b0b);
-      color:#fff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-    }
-    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 40px;position:sticky;top:0;z-index:40;backdrop-filter: blur(6px);background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.2));border-bottom:1px solid rgba(255,255,255,0.03);}
+    html,body{height:100%;margin:0;font-family:Inter, "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color: #f4f4f4}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:linear-gradient(180deg, rgba(0,0,0,0.25), transparent)}
     .brand{display:flex;align-items:center;gap:14px}
     .brand img{height:64px;width:auto;display:block}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;font-weight:600}
-    nav a:hover{color:var(--accent)}
-    .hero{min-height:66vh;display:flex;align-items:center;padding:48px 6%;gap:40px}
-    .hero-left{flex:1;max-width:760px}
-    .eyebrow{color:var(--accent-2);font-weight:700}
-    .hero h1{font-size:clamp(28px,5vw,52px);margin:14px 0 10px;color:#fff}
-    .lead{color:var(--muted);font-size:1.05rem;margin-bottom:18px}
-    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#b86b50);color:#fff}
-    .btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
-    .hero-right{flex:1;display:flex;justify-content:center}
-    .logo-card{width:320px;height:320px;border-radius:20px;background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.02));display:flex;align-items:center;justify-content:center;box-shadow: 0 8px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
-    .logo-card img{max-width:85%;height:auto;display:block}
-    .section{padding:54px 6%}
-    .section h2{font-size:1.45rem;margin:0 0 18px;color:#fff}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
-    .card h3{margin:8px 0;color:var(--accent)}
-    .muted{color:var(--muted)}
-    footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,0.03);color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-    @media (max-width:900px){header{padding:12px 18px}.hero{padding:36px 6%}.logo-card{width:240px;height:240px}.brand img{height:56px}}
+    .brand h1{font-size:20px;margin:0;color:var(--accent);letter-spacing:1px}
 
-    /* debug overlay */
-    .debug-banner{position:fixed;left:12px;right:12px;bottom:12px;background:rgba(0,0,0,0.8);color:#fff;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);z-index:9999;font-size:0.95rem;display:flex;justify-content:space-between;gap:12px;align-items:center}
-    .debug-banner button{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 10px;border-radius:6px;color:var(--muted);cursor:pointer}
-    .test-result{font-weight:700;color:var(--accent);margin-left:12px}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-size:1rem;padding:8px;border-radius:8px}
+    nav a:hover{color:var(--accent);background:rgba(208,124,82,0.06)}
+
+    .controls{display:flex;align-items:center;gap:12px}
+    .btn{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;font-weight:600
+    }
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#111}
+
+    /* Hero */
+    .hero{
+      min-height:62vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:48px 18px;position:relative;
+      background-color:#0f1112; /* fallback */
+      background-image:radial-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.6));
+    }
+    .hero .content{max-width:1100px}
+    .hero h2{font-size:2.6rem;margin:0 0 12px;color:var(--accent)}
+    .hero p{color:var(--muted);font-size:1.05rem;margin:0}
+
+    /* Grid sections */
+    .section{padding:56px 6%;}
+    .grid{display:grid;gap:20px}
+    .services-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px;color:var(--accent)}
+    .card p{margin:0;color:var(--muted)}
+
+    /* Footer */
+    footer{padding:28px 6%;background:transparent;color:var(--muted);text-align:center}
+
+    /* Small responsive tweaks */
+    @media (max-width:720px){
+      .hero h2{font-size:1.8rem}
+      nav{display:none}
+    }
+
+    /* Status / Toast */
+    #status{position:fixed;left:16px;bottom:16px;background:rgba(0,0,0,0.6);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
   <header>
     <div class="brand">
+      <!-- use the provided images (the environment may map them automatically). We provide two fallbacks. -->
       <picture>
-        <source srcset="MAJD-LOGO-3.png" media="(min-width:600px)">
-        <img src="LOGO.png" alt="شعار مجد الدين" style="height:56px;"/>
+        <source srcset="MAJD-LOGO-3.png" />
+        <img src="LOGO.png" alt="شعار مجد الدين" />
       </picture>
-      <div style="display:flex;flex-direction:column;line-height:1">
-        <strong style="font-size:0.95rem">MAJDDEEN</strong>
-        <small class="muted">استديو مجد الدين للتصميم المعماري</small>
-      </div>
+      <h1>استديو مجد الدين</h1>
     </div>
 
-    <nav aria-label="قائمة الموقع">
-      <a href="#home">الرئيسية</a>
-      <a href="#projects">مشاريعنا</a>
-      <a href="#services">خدمات</a>
-      <a href="#team">الفريق</a>
+    <nav aria-label="قائمة التنقل">
+      <a href="#">الرئيسية</a>
+      <a href="#services">الخدمات</a>
+      <a href="#projects">المشاريع</a>
       <a href="#contact">تواصل</a>
-      <!-- Optional test button; does NOT auto-connect. Click to run the safe test that verifies wrapper is active. -->
-      <button id="test-wallet" class="btn btn-ghost" style="margin-left:10px">اختبار MetaMask (اختياري)</button>
     </nav>
+
+    <div class="controls">
+      <!-- Note: this button does NOT auto-connect. It performs a user-initiated check/request only. -->
+      <button id="connectWalletBtn" class="btn">اتصال بالمحفظة</button>
+      <button class="btn primary" onclick="location.href='#contact'">اطلب عرضًا</button>
+    </div>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="hero-left">
-        <div class="eyebrow">استوديو معماري — تصميم وابتكار</div>
-        <h1>نحن نصمم مساحات تحكي قصة كل عميل</h1>
-        <p class="lead">تصاميم معمارية داخلية وخارجية متكاملة، حلول تنفيذية، وإشراف هندسي — نقدم رؤية واضحة للمكان قبل أن يُبنى.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#projects">مشاهدة المشاريع</a>
-          <a class="btn btn-ghost" href="#contact">طلب استشارة</a>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="logo-card" aria-hidden="true">
-          <img src="MAJD-LOGO-3.png" alt="شعار مجد الدين"/>
-        </div>
+    <section class="hero" role="banner" aria-labelledby="hero-heading">
+      <div class="content">
+        <h2 id="hero-heading">تصميم معماري بمعايير حداثية — هوية واحترافية</h2>
+        <p>نحو مساحات تُحاكي متطلبات الحياة المعاصرة وتُبرز الحس المعماري بخطوط واضحة ومواد مُنتقاة.</p>
       </div>
     </section>
 
-    <section id="projects" class="section">
-      <h2>أبرز المشاريع</h2>
-      <div class="grid">
+    <section id="services" class="section" aria-labelledby="services-heading">
+      <h2 id="services-heading" style="color:var(--accent)">خدماتنا</h2>
+      <div class="grid services-grid">
         <article class="card">
-          <img data-src="https://via.placeholder.com/800x500?text=Project+1" alt="مشروع 1" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
-          <h3>فيلا سكنية</h3>
-          <p class="muted">تصميم عصري يوازن بين الخصوصية والمساحات المفتوحة.</p>
+          <h3>التصميم المعماري</h3>
+          <p>مخططات تنفيذية، نماذج ثلاثية الأبعاد، وخبرة في تصميم الفلل، الأبنية السكنية والتجارية.</p>
         </article>
-
         <article class="card">
-          <img data-src="https://via.placeholder.com/800x500?text=Project+2" alt="مشروع 2" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
-          <h3>مبنى تجاري</h3>
-          <p class="muted">مخططات مرنة ومساحات واجهات مميزة.</p>
+          <h3>التصميم الداخلي</h3>
+          <p>حلول ذكية للمساحات الداخلية توازن بين الجمال والوظيفة.</p>
         </article>
-
         <article class="card">
-          <img data-src="https://via.placeholder.com/800x500?text=Project+3" alt="مشروع 3" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:12px;" class="lazy">
-          <h3>تصميم داخلي</h3>
-          <p class="muted">حلول عملية مع لمسات جمالية دقيقة.</p>
+          <h3>إدارة المشاريع والإشراف</h3>
+          <p>متابعة تنفيذية دقيقة وضمان جودة في كل مرحلة.</p>
         </article>
       </div>
     </section>
 
-    <section id="services" class="section">
-      <h2>خدماتنا</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>تصميم معماري</h3>
-          <p class="muted">مخططات وتصاميم تنفيذية تراعي الميزانية والجدول الزمني.</p>
+    <section id="projects" class="section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" style="color:var(--accent)">نماذج مشاريع مختارة</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+        <div class="card" style="min-height:160px;display:flex;align-items:end;justify-content:flex-end;background-image:linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.45));">
+          <div>
+            <h3>مجمع سكني حديث</h3>
+            <p style="color:var(--muted)">تصميم يعيد تعريف الاستخدام الذكي للمساحات.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>تصميم داخلي</h3>
-          <p class="muted">اختيارات مواد وأثاث وحلول إضاءة متكاملة.</p>
-        </div>
-        <div class="card">
-          <h3>إشراف تنفيذي</h3>
-          <p class="muted">متابعة مراحل التنفيذ للتأكد من مطابقة التصاميم للمخرجات.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="team" class="section">
-      <h2>فريق العمل</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>مجد الدين</h3>
-          <p class="muted">مؤسس واستشاري معماري — شغف بتصميم المساحات السكنية والمعمارية.</p>
-        </div>
-        <div class="card">
-          <h3>مصمم داخلي</h3>
-          <p class="muted">خبرة في تحويل الأفكار إلى واقع ملموس.</p>
+        <div class="card" style="min-height:160px;display:flex;align-items:end;justify-content:flex-end;">
+          <div>
+            <h3>فيلا ريفية</h3>
+            <p style="color:var(--muted)">اندماج المواد الطبيعية مع لمسات تصميمية معاصرة.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section">
-      <h2>تواصل معنا</h2>
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px">
-        <div class="card">
-          <form action="mailto:info@example.com" method="post" enctype="text/plain">
-            <label style="display:block;margin-bottom:8px;color:var(--muted)">الاسم</label>
-            <input name="name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:10px">
-
-            <label style="display:block;margin-bottom:8px;color:var(--muted)">البريد الإلكتروني</label>
-            <input type="email" name="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:10px">
-
-            <label style="display:block;margin-bottom:8px;color:var(--muted)">رسالة / وصف المشروع</label>
-            <textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff;margin-bottom:12px"></textarea>
-
-            <div style="display:flex;gap:10px">
-              <button class="btn btn-primary" type="submit">أرسل</button>
-              <button class="btn btn-ghost" type="reset">مسح</button>
-            </div>
-          </form>
-        </div>
+    <section id="contact" class="section" aria-labelledby="contact-heading">
+      <h2 id="contact-heading" style="color:var(--accent)">تواصل معنا</h2>
+      <div class="grid" style="grid-template-columns:1fr 320px;gap:22px;align-items:start">
+        <form class="card" onsubmit="event.preventDefault(); alert('تم استلام طلبك — سيتم التواصل قريبًا');">
+          <label style="display:block;margin-bottom:8px;color:var(--muted)">الاسم</label>
+          <input type="text" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px" />
+          <label style="display:block;margin-bottom:8px;color:var(--muted)">البريد الإلكتروني</label>
+          <input type="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px" />
+          <label style="display:block;margin-bottom:8px;color:var(--muted)">موجز الطلب</label>
+          <textarea required rows="5" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:12px"></textarea>
+          <button type="submit" class="btn primary">إرسال</button>
+        </form>
 
         <aside class="card">
-          <h3>معلومات التواصل</h3>
-          <p class="muted">البريد: info@example.com<br>الهاتف: +966 5X XXX XXXX</p>
-          <div style="height:12px"></div>
-          <p class="muted">العنوان: الرياض، المملكة العربية السعودية</p>
+          <h3>بيانات الاتصال</h3>
+          <p style="color:var(--muted)">البريد: info@majddeen.studio<br/>الهاتف: +966 5X XXX XXXX<br/>الموقع: الرياض، المملكة العربية السعودية</p>
+          <div style="margin-top:12px"><strong style="color:var(--accent)">ملاحظة تقنية:</strong>
+            <p style="color:var(--muted);margin:8px 0 0;font-size:13px">إذا كنت ترى رسالة "Failed to connect to MetaMask" عند تشغيل هذا الملف، فهذا يعني أنّ المحاولات للاتصال بامتداد MetaMask تمت تلقائيًا من مكان آخر أو من سكربت آخر في بيئتك. هذا القالب لا يحاول الاتصال تلقائيًا؛ يجب الضغط على زر "اتصال بالمحفظة" لبدء العملية بشكل تفاعلي وآمن.</p>
+          </div>
         </aside>
       </div>
     </section>
   </main>
 
   <footer>
-    <div>© <span id="year"></span> استديو مجد الدين — جميع الحقوق محفوظة</div>
-    <div class="muted">تصميم أولي — قابل للتطوير والربط بـ CMS</div>
+    <p>© 2025 استديو مجد الدين للتصميم المعماري — كل الحقوق محفوظة</p>
   </footer>
 
+  <div id="status" aria-live="polite">جاهز</div>
+
   <script>
-    // dynamic year
-    try { document.getElementById('year').textContent = new Date().getFullYear(); } catch(e){ console.warn('Year element missing', e); }
+    // --- IMPORTANT ---
+    // This script deliberately DOES NOT auto-connect to MetaMask or any wallet on load.
+    // Many "Failed to connect to MetaMask" errors are caused by auto-connection attempts
+    // in sandboxed or restricted environments. We only attempt to connect when the user
+    // clicks the "connectWalletBtn" button.
 
-    // lazy load images
-    (function(){
-      const lazy = Array.from(document.querySelectorAll('img.lazy'));
-      if('IntersectionObserver' in window){
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(e=>{
-            if(e.isIntersecting){
-              const img = e.target;
-              if(img.dataset && img.dataset.src){
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                img.classList.remove('lazy');
-              }
-              io.unobserve(img);
-            }
-          })
-        },{rootMargin:'200px'});
-        lazy.forEach(img=>io.observe(img));
+    const statusEl = document.getElementById('status');
+    const connectBtn = document.getElementById('connectWalletBtn');
+
+    function setStatus(msg){
+      statusEl.textContent = msg;
+      console.debug('[STATUS]', msg);
+    }
+
+    function isMetaMaskAvailable(){
+      try{
+        return typeof window !== 'undefined' && !!window.ethereum && !!window.ethereum.isMetaMask;
+      }catch(e){
+        return false;
+      }
+    }
+
+    // On load we only detect presence; we DO NOT request accounts.
+    window.addEventListener('load', ()=>{
+      if(isMetaMaskAvailable()){
+        setStatus('MetaMask متوفر — انقر "اتصال بالمحفظة" لتسجيل الدخول');
       } else {
-        lazy.forEach(img=>{ if(img.dataset && img.dataset.src) img.src = img.dataset.src});
+        setStatus('MetaMask غير مثبت أو غير متاح في هذا المتصفح');
       }
-    })();
+    });
 
-    // Defensive wrapper for ethereum provider: do NOT auto-connect.
-    (function(){
-      if (typeof window === 'undefined') return;
-      try {
-        if (window.ethereum) {
-          window.__MAJDDEEN_metaMask_detected = true;
-          console.info('MetaMask/ethereum provider detected. Preview wrapper is active.');
-          try {
-            const canWrap = !!window.ethereum.request && (function() {
-              try {
-                const desc = Object.getOwnPropertyDescriptor(window.ethereum, 'request');
-                return !desc || desc.writable !== false;
-              } catch (e) { return false; }
-            })();
-
-            if (canWrap) {
-              const originalRequest = window.ethereum.request.bind(window.ethereum);
-              window.ethereum.request = async function(args) {
-                console.warn('Blocked ethereum.request call in preview environment. args:', args);
-                return Promise.reject(new Error('MetaMask requests are disabled in this preview environment. Click "اختبار MetaMask" to run a controlled test.'));
-              };
-              window.__MAJDDEEN_metaMask_wrapped = true;
-            } else {
-              console.warn('ethereum.request is not writable; wrapper not applied.');
-            }
-          } catch (wrapErr) {
-            console.warn('Could not wrap ethereum.request safely:', wrapErr);
-          }
-        }
-      } catch (err) {
-        console.warn('Error while checking ethereum provider:', err);
-      }
-    })();
-
-    // Debug banner
-    (function(){
-      function showDebugBanner(msg, isPersistent){
-        try {
-          let banner = document.getElementById('__majddeen_debug_banner');
-          if (!banner) {
-            banner = document.createElement('div');
-            banner.id = '__majddeen_debug_banner';
-            banner.className = 'debug-banner';
-            banner.innerHTML = '<div id="__majddeen_debug_text"></div><div><button id="__majddeen_debug_close">إغلاق</button></div>';
-            document.body.appendChild(banner);
-            document.getElementById('__majddeen_debug_close').addEventListener('click', ()=>{ banner.style.display='none'; });
-          }
-          document.getElementById('__majddeen_debug_text').textContent = msg;
-          banner.style.display = 'flex';
-          if(!isPersistent){
-            setTimeout(()=>{ banner.style.display = 'none'; }, 8000);
-          }
-        } catch(e){ console.warn('Could not show debug banner', e); }
+    // User-initiated connect (safe): wrapped in try/catch and never called automatically.
+    async function connectWallet(){
+      if(!isMetaMaskAvailable()){
+        alert('MetaMask غير مثبت أو غير متاح. الرجاء تثبيته أو استخدام متصفح يدعمه.');
+        return;
       }
 
-      window.addEventListener('error', function(ev){
-        const msg = ev && ev.message ? ev.message : String(ev);
-        if (msg && (msg.toLowerCase().includes('metamask') || msg.toLowerCase().includes('ethereum') || msg.toLowerCase().includes('failed to connect'))) {
-          console.warn('Caught error related to MetaMask/ethereum:', msg, ev);
-          showDebugBanner('تحذير: تم رصد خطأ متعلق بـ MetaMask/ethereum. هذا المعاين يمنع الاتصالات التلقائية. افتح Console لفحص المصدر.', true);
+      setStatus('طلب الإتصال بالمحفظة — يرجى الموافقة في نافذة MetaMask');
+      try{
+        // Request accounts from MetaMask. This MUST be done from user interaction (button click).
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if(Array.isArray(accounts) && accounts.length>0){
+          setStatus('متصل بالمحفظة: ' + accounts[0]);
+          connectBtn.textContent = 'تم الاتصال';
+          connectBtn.disabled = true;
+        } else {
+          setStatus('لم يتم إرجاع حسابات من MetaMask');
         }
-      });
-
-      window.addEventListener('unhandledrejection', function(ev) {
-        const reason = ev && ev.reason ? (ev.reason.message || ev.reason.toString()) : 'Unhandled rejection';
-        if (reason && (reason.toLowerCase().includes('metamask') || reason.toLowerCase().includes('ethereum') || reason.toLowerCase().includes('failed to connect'))) {
-          console.warn('Caught promise rejection related to MetaMask/ethereum:', reason, ev);
-          showDebugBanner('تحذير: تم رصد Promise rejection متعلق بـ MetaMask/ethereum. افتح Console للتفاصيل.', true);
+      }catch(err){
+        // Handle and display the error gracefully. Many environments will throw here
+        // if MetaMask is not reachable from the sandbox.
+        console.error('خطأ عند محاولة الاتصال بمحفظة MetaMask:', err);
+        setStatus('فشل الاتصال بالمحفظة — تحقق من ملحق MetaMask أو سجلات الكونسول');
+        // Provide a readable message for known common cases
+        if(err && err.code === 4001){
+          // EIP-1193 userRejectedRequest
+          alert('لقد رفضت طلب الاتصال من MetaMask. حاول مرة أخرى إن رغبت.');
+        } else {
+          // Generic fallback
+          alert('تعذر الاتصال بالمحفظة. راجع الكونسول لمزيد من التفاصيل.');
         }
-      });
+      }
+    }
 
-      // expose for manual use
-      window.__majddeen_showDebug = showDebugBanner;
-    })();
+    connectBtn.addEventListener('click', connectWallet);
 
-    // Test button behavior: safe test triggered only on user click
-    (function(){
-      const btn = document.getElementById('test-wallet');
-      if(!btn) return;
-      btn.addEventListener('click', async function(){
-        const show = window.__majddeen_showDebug || function(msg){ alert(msg); };
-        try {
-          if(!window.ethereum){
-            show('لا يوجد مزوّد Ethereum (MetaMask) مثبت في المتصفح.', false);
-            return;
-          }
-          // Attempt a controlled request; our wrapper should reject with a specific message.
-          const result = await window.ethereum.request({ method: 'eth_requestAccounts' }).catch(err => { throw err; });
-          // If it resolves (unlikely in this preview), show accounts
-          show('تم الحصول على حسابات: ' + JSON.stringify(result), false);
-        } catch (err){
-          // Display the controlled rejection message (wrapped)
-          const msg = err && err.message ? err.message : String(err);
-          show('نتيجة اختبار MetaMask: ' + msg, false);
-          console.warn('Test wallet result:', err);
-        }
-      });
-    })();
+    // For debugging in sandboxed environments: expose helper on window
+    window.__majdDebug = { isMetaMaskAvailable };
   </script>
 </body>
 </html>
